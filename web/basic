@@ -1,0 +1,2 @@
+post data:
+curl -d "1=x" url

