@@ -1,3 +1,4 @@
+'/ NX enabled ! /'
 from pwn import *
 context(arch = 'amd64', os = 'linux')
 _loc = False

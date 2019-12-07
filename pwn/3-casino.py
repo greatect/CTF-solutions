@@ -1,3 +1,4 @@
+'/ NX disabled ! /'
 from pwn import *
 context(arch = 'amd64', os = 'linux')
 r = remote('edu-ctf.csie.org', 10172)
