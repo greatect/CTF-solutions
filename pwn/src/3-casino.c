@@ -1,3 +1,4 @@
+// RELRO(P) Canary(Y) NX(N) PIE(N)
 #include<stdio.h>
 #include<stdlib.h>
 #include<fcntl.h>
